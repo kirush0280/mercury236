@@ -260,7 +260,7 @@ class Mercury : public PollingComponent {
 
 // Функции после определения Meter
 inline uint32_t dm32_3(uint8_t *d) { return (((((uint32_t)(d[0] & 0x3f)) << 8) + d[2]) << 8) + d[1]; }
-inline uint32_t dm32_4(uint8_t *d) { return ((((((uint32_t)d[1]) << 8) + d[0]) << 8) + d[3]) << 8) + d[2]; } // Исправлено: добавлена точка с запятой
+inline uint32_t dm32_4(uint8_t *d) { return ((((uint32_t)d[1] << 8) + d[0]) << 16) | (((uint32_t)d[3] << 8) + d[2]); }
 
 inline uint16_t stepCrc16mb(uint8_t in, bool start = false, uint16_t *crc = nullptr) {
   static uint16_t static_crc = 0xFFFF;
